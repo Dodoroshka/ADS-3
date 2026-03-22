@@ -44,9 +44,3 @@ unsigned int seqCollatz(unsigned int* maxlen,
     *maxlen = MaxLen;
     return MaxValue;
 }
-int main() {
-    unsigned int maxlen = 0;
-    std::cout << seqCollatz(&maxlen, 2, 10) << std::endl;
-    std::cout << collatzMaxValue(3) << std::endl;
-    return 0;
-}
