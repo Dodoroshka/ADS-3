@@ -4,8 +4,8 @@
 
 uint64_t collatzMaxValue(uint64_t num) {
     uint64_t MaxValue = num;
-    while (num < 1) {
-        if (num % 2 == 0) {
+    while (num != 1) {
+        if (num % 2 == 1) {
             num = 3 * num + 1;
         } else {
             num = num / 2;
@@ -14,13 +14,13 @@ uint64_t collatzMaxValue(uint64_t num) {
             MaxValue = num;
         }
     }
-    return num;
+    return MaxValue;
 }
 
 unsigned int collatzLen(uint64_t num) {
-    uint64_t len = 0;
-    while (num < 1) {
-        if (num % 2 == 0) {
+    unsigned int len = 0;
+    while (num != 1) {
+        if (num % 2 == 1) {
             num = 3 * num + 1;
         } else {
             num = num / 2;
@@ -35,7 +35,7 @@ unsigned int seqCollatz(unsigned int* maxlen,
     uint64_t rbound) {
     uint64_t MaxValue = lbound;
     unsigned int MaxLen = collatzLen(lbound);
-    for (size_t i = lbound + 1; i <= rbound; ++i) {
+    for (uint64_t i = lbound + 1; i <= rbound; ++i) {
         if (collatzLen(i) > MaxLen) {
             MaxLen = collatzLen(i);
             MaxValue = i;
@@ -43,4 +43,10 @@ unsigned int seqCollatz(unsigned int* maxlen,
     }
     *maxlen = MaxLen;
     return MaxValue;
+}
+int main() {
+    unsigned int maxlen = 0;
+    std::cout << seqCollatz(&maxlen, 2, 10) << std::endl;
+    std::cout << collatzMaxValue(3) << std::endl;
+    return 0;
 }
